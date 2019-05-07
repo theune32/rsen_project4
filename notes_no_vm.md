@@ -14,4 +14,6 @@ I can recommend Visual Studio Code, easily used for multiple programming and scr
 - Gazebo giving error:
   `[Err] [REST.cc:205] Error in REST request`
   Solution described [here](https://bitbucket.org/osrf/gazebo/issues/2607/error-restcc-205-during-startup-gazebo)
--  
+- Gazebo bug/missing functionality:
+    Interesting find, you cannot edit existing/saved buildings. Some aspects are changeable but not much.
+
