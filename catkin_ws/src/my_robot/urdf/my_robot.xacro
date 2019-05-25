@@ -193,4 +193,18 @@
     <axis xyz="0 1 0"/>
   </joint>
 
+<!-- Test colors -->
+  <gazebo reference="left_wheel">
+    <material>Gazebo/Green</material>
+  </gazebo>
+  <gazebo reference="right_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+    <gazebo reference="camera">
+    <material>Gazebo/Red</material>
+  </gazebo>
+    <gazebo reference="chassis">
+    <material>Gazebo/Gold</material>
+  </gazebo>
+
 </robot>
