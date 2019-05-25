@@ -6,8 +6,13 @@
 - Gazebo version ?
 
 ## Tips
-Always run `sudo apt-get update && sudo apt-get upgrade -y`
+Always run `sudo apt-get update && sudo apt-get upgrade -y`.
 I can recommend Visual Studio Code, easily used for multiple programming and scripting languages in the same project/folder.
+There is a setup page available [here](http://wiki.ros.org/IDEs#Visual_Studio_Code_.28VSCode.29). There still was an issue with the right include.
+Manually changing the file `.vscode/c_cpp_properties.json` by adding `/opt/ros/melodic/**` to the `INCLUDE_PATH`, solved the issue.
+An helpful link for setting up ros node classes is found [here](https://github.com/wsnewman/ros_class/blob/master/example_ros_class/src/example_ros_class.cpp).
+
+
 
 
 ## Errors handled/solved/worked around
