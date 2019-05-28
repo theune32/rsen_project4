@@ -21,7 +21,7 @@ void drive_robot(float lin_x, float ang_z)
     //Message created with the requested linx and angz values and call is made.
     ball_chaser::DriveToTarget msg;
     msg.request.linear_x = lin_x;
-    msg.request.angular_z - ang_z;
+    msg.request.angular_z = ang_z;
 
     if(!client.call(msg))
         ROS_ERROR("Failed to accept DriveToTarget request");
@@ -32,35 +32,36 @@ void process_image_callback(const sensor_msgs::Image img)
 {
 
     int white_pixel = 255;
-
-    // Check for all pixels if there is a bright white one. And the relative position
-    // image is segmented in 3 equal size parts
+    float req_lin_x = 0;
+    float req_ang_z = 0;
+    // size_t n = sizeof(img.data)/sizeof(img.data[0]);
+    // ROS_INFO("height: %i width: %i step: %i", img.height, img.width, img.step);
+    // ROS_INFO("size is: %lu", n);
     for (int i = 0; i < img.height * img.step; i++) {
-        if (img.data[i] == 255) {
-            // matrix data is steps * rows
-            int mod = i % img.width;
-            float left_side_end = img.width / 3; //
-            float right_begin = img.width * 2 / 3;
-            if (mod <= left_side_end) {
-                // white pixel on the left, go left
-                drive_robot(0.0, 0.5);
-            }
+        if (img.data[i] == white_pixel) {
+            ROS_DEBUG("white detected");
+            // Make sure to use step instead of width, this is due to the 3 color channels, so step is 3 * width
+            int mod = (i % img.step);
+            float left_side_end = img.step / 3;
+            float right_begin = img.step * 2 / 3;
+            if( mod < left_side_end ) {
+                ROS_DEBUG("Left");
+                req_ang_z = 0.5;
+            } 
+            else if (mod > right_begin) {
+                ROS_DEBUG("Right");
+                req_ang_z = -0.5;
+            } 
             else {
-                if (mod > right_begin) {
-                    // white pixel on the right, go right
-                    drive_robot(0.0, -0.5);
-                } else {
-                    // white pixel in the middle, straight ahead
-                    drive_robot(0.5, 0.0);
+                ROS_DEBUG("Straight ahead");
+                req_lin_x = 0.5;
                 }
-
-            }
+            drive_robot(req_lin_x, req_ang_z);
+            ROS_DEBUG("linx %f angz %f", req_lin_x, req_ang_z);
             break;
-        } else {
-        // no white pixel to be seen, stop!
-        drive_robot(0.0, 0.0);
         } 
     }
+    drive_robot(req_lin_x, req_ang_z);
 }
 
 private:
