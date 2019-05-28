@@ -22,7 +22,7 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request& req,
     ball_chaser::DriveToTarget::Response& res)
 {
 
-    ROS_INFO("DriveToTarget received - lin_x:%1.2f, ang_z:%1.2f", (float)req.linear_x, (float)req.angular_z);
+    ROS_INFO("DriveToTarget received - lin_x:%.2f, ang_z:%.2f", (float)req.linear_x, (float)req.angular_z);
     geometry_msgs::Twist msg;
     msg.linear.x = req.linear_x;    msg.angular.z = req.angular_z;
 
@@ -30,7 +30,7 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request& req,
     motor_command_publisher.publish(msg);
 
     // Return a response message
-    res.msg_feedback = "Requested wheel velocities set - lin_x:%1.2f, ang_z:%1.2f", (float)req.linear_x, (float)req.angular_z;
+    res.msg_feedback = "Requested wheel velocities set - lin_x " + std::to_string(req.linear_x) + " , ang_z: " + std::to_string(req.angular_z);
     ROS_INFO_STREAM(res.msg_feedback);
 
     return true;
