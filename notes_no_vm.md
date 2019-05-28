@@ -22,3 +22,5 @@ An helpful link for setting up ros node classes is found [here](https://github.c
 - Gazebo bug/missing functionality:
     Interesting find, you cannot edit existing/saved buildings. Some aspects are changeable but not much.
 - rviz didnt show any models except the meshed LIDAR, see [here] (https://answers.ros.org/question/296227/robot-model-does-not-appear-in-rviz-melodic/) and [here] (https://github.com/ros-visualization/rviz/issues/1249). TL/DR: `export LC_NUMERIC="en_US.UTF-8"` worked for me. Colors are not completely ok though. Update: looks like the red is some kind of highlighting.
+- Following the instructions in the GoChaseProject I ran into an error adding the whitebal. When saving the world the robot model was also saved leading to errors in Gazebo that complained about there being 2 models with the same name:
+`SpawnModel: Failure - model nam my_robot already exits.` Manually removing the my_robot models from world file solved this.

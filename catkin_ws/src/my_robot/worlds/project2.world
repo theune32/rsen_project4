@@ -219,6 +219,16 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
+            <model name='my_ball'>
+        <pose frame=''>-0.893461 -16.8027 0.1 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link_0'>
+          <pose frame=''>-0.893461 -16.8027 0.1 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
       <model name='rover1'>
         <pose frame=''>-7.46591 -6.7008 0.049684 -5.7e-05 0.006192 -0.084067</pose>
         <scale>1 1 1</scale>
