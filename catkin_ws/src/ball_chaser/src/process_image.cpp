@@ -37,12 +37,13 @@ void process_image_callback(const sensor_msgs::Image img)
     // size_t n = sizeof(img.data)/sizeof(img.data[0]);
     // ROS_INFO("height: %i width: %i step: %i", img.height, img.width, img.step);
     // ROS_INFO("size is: %lu", n);
-    for (int i = 0; i < img.height * img.step; i++) {
-        if (img.data[i] == white_pixel) {
+    for (int i = 0; i < img.height * img.step; i += 3) {
+        // check for all 3 color channels if the value is 255
+        if (img.data[i] == white_pixel && img.data[i+1] == white_pixel && img.data[i+2] == white_pixel) {
             ROS_DEBUG("white detected");
             // Make sure to use step instead of width, this is due to the 3 color channels, so step is 3 * width
             int mod = (i % img.step);
-            float left_side_end = img.step / 3;
+            float left_side_end = img.step / 3; 
             float right_begin = img.step * 2 / 3;
             if( mod < left_side_end ) {
                 ROS_DEBUG("Left");
