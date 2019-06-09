@@ -1,0 +1,16 @@
+depthimage_to_laserscan/
+joystick_drivers/
+kobuki_bumper2pc/
+kobuki_description/
+kobuki_desktop/
+kobuki_msgs/
+odom_to_trajectory/
+opencv-3.1.0/
+orocos-bayesian-filtering/
+robot_pose_ekf/
+turtlebot/
+turtlebot_apps/
+turtlebot_interactions/
+turtlebot_msgs/
+turtlebot_simulator/
+yocs_cmd_vel_mux/
